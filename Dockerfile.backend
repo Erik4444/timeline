@@ -1,0 +1,25 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+
+# Install system dependencies for Pillow/piexif
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libjpeg-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/pyproject.toml ./
+RUN pip install --no-cache-dir fastapi "uvicorn[standard]" sqlalchemy alembic pydantic "pydantic-settings" \
+    python-multipart httpx pillow piexif icalendar numpy aiofiles python-dateutil chardet
+
+COPY backend/src ./src
+
+ENV PYTHONPATH=/app/src
+ENV DATABASE_URL=sqlite:////app/data/timeline.db
+ENV DATA_DIR=/app/data
+ENV OLLAMA_URL=http://host.docker.internal:11434
+ENV LMSTUDIO_URL=http://host.docker.internal:1234/v1
+
+EXPOSE 8000
+
+CMD ["uvicorn", "timeline.main:app", "--host", "0.0.0.0", "--port", "8000"]

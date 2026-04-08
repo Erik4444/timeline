@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv --version)",
+      "Bash(brew list:*)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(/opt/homebrew/bin/npm --version)",
+      "Bash(/opt/homebrew/bin/npx --version)",
+      "Bash(/opt/homebrew/bin/python3.13 -m venv .venv)",
+      "Bash(.venv/bin/pip install:*)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.14.0/bin:$PATH\")",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

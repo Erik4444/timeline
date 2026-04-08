@@ -1,0 +1,206 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: #f8f9fa;
+  color: #111;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── Top Bar ─── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 52px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.app-logo {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1a1a2e;
+  white-space: nowrap;
+}
+
+.ai-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.ai-on { background: #ede9fe; color: #6d28d9; }
+.ai-off { background: #f3f4f6; color: #9ca3af; }
+
+.top-bar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.event-count {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.15s;
+}
+.icon-btn:hover, .icon-btn.active {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.import-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.import-btn:hover { background: #4f46e5; }
+.import-btn.large { padding: 12px 24px; font-size: 15px; }
+
+/* ─── Filter strip ─── */
+.filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.source-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #374151;
+  transition: all 0.15s;
+}
+.source-chip:hover { border-color: #9ca3af; }
+.chip-count { font-size: 11px; opacity: 0.7; }
+
+.clear-btn {
+  font-size: 12px;
+  color: #6366f1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
+/* ─── Main area ─── */
+.main-area {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  bottom: 0;
+  transition: right 0.25s ease;
+  overflow: hidden;
+}
+
+/* ─── Empty state ─── */
+.empty-state {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.empty-state h2 { font-size: 22px; margin-bottom: 8px; color: #374151; }
+.empty-state p { color: #9ca3af; margin-bottom: 24px; font-size: 15px; }
+
+/* ─── vis-timeline overrides ─── */
+.vis-timeline-container { height: 100%; }
+.vis-timeline { border: none !important; background: #f8f9fa !important; }
+.vis-panel.vis-background { background: #f8f9fa !important; }
+.vis-item { border-radius: 4px !important; font-size: 12px !important; font-family: inherit !important; }
+.vis-item.vis-selected { filter: brightness(0.9) !important; box-shadow: 0 0 0 2px #6366f1 !important; }
+.vis-label { font-size: 12px !important; font-family: inherit !important; padding: 0 8px !important; }
+
+/* ─── Animations ─── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin { animation: spin 1s linear infinite; }
